@@ -1,0 +1,7 @@
+{
+  "name": "LocalFoods-Reparter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
