@@ -1,20 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Bienvenido {{user}}</ion-title>
+      <ion-button slot="end" color="tertiary" shape="round">
+        <ion-icon name="exit-sharp"></ion-icon>
+      </ion-button>
     </ion-toolbar>
   </ion-header>
+  
+  <ion-content color="light" >
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-list-header color="success">
+      <ion-title class="ion-text-center">Pedidos Pendientes</ion-title>
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of pedidos" class="ion-text-center" (click)="goToPedido(item._id)" >
+      <ion-label class="ion-text-left">{{ item.local }}</ion-label>
+      <div>
+
+        <ion-chip *ngIf="item.estado=='disponible'" outline="true" color="success">
+          <ion-label>{{item.estado}}</ion-label>
+        </ion-chip>
+        <ion-chip class="ion-text-center" *ngIf="item.estado=='proceso'" outline="true" color="warning">
+          <ion-label>{{item.estado}}</ion-label>
+        </ion-chip>
+        <ion-chip class="ion-text-center" *ngIf="item.estado=='cancelado'" outline="true" color="danger">
+          <ion-label>{{item.estado}}</ion-label>
+        </ion-chip>
+
+        <ion-chip class="ion-text-center" *ngIf="item.estado=='entregado'" outline="true" color="secondary">
+          <ion-label>{{item.estado}}</ion-label>
+        </ion-chip>
+      </div>
+      
+    </ion-item>
+
+  </ion-list>
+
+  <ion-footer>
+    <div class="ion-text-center ion-padding">
+      <ion-button color="tertiary" shape="round">
+        Cerrar sesion
+        <ion-icon slot="end" name="exit-sharp"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-footer>
+
 </ion-content>

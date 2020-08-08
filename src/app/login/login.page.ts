@@ -39,7 +39,10 @@ export class LoginPage implements OnInit {
         console.log(this.resp.usuario.usuario);
         
         this.checkToast('Bienvenido',this.resp.usuario.usuario, 'primary')
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home', {
+          iduser: this.resp.usuario._id,
+          user: this.resp.usuario.usuario
+        }])
         
       }, err => {
         this.resp = err
